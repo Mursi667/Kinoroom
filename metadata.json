@@ -1,0 +1,6 @@
+{
+  "name": "Kinoroom",
+  "description": "Совместный просмотр фильмов с друзьями: синхронизация плеера, голосовой и текстовый чат в реальном времени.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

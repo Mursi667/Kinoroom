@@ -1,0 +1,134 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-sans: "Manrope", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  :root {
+    --canvas-bg: #f1f4f9;
+    --canvas-accent-1: rgba(56, 189, 248, 0.16);
+    --canvas-accent-2: rgba(99, 102, 241, 0.12);
+    --glass-bg: rgba(255, 255, 255, 0.68);
+    --glass-bg-elevated: rgba(255, 255, 255, 0.84);
+    --glass-border: rgba(15, 23, 42, 0.09);
+    --glass-specular: rgba(255, 255, 255, 0.9);
+    --glass-shadow: 0 18px 46px -18px rgba(15, 23, 42, 0.14);
+  }
+
+  .dark {
+    --canvas-bg: #080b11;
+    --canvas-accent-1: rgba(56, 189, 248, 0.14);
+    --canvas-accent-2: rgba(59, 130, 246, 0.14);
+    --glass-bg: rgba(17, 22, 33, 0.66);
+    --glass-bg-elevated: rgba(22, 29, 43, 0.84);
+    --glass-border: rgba(255, 255, 255, 0.11);
+    --glass-specular: rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 22px 54px -20px rgba(0, 0, 0, 0.72);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--canvas-bg);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--canvas-bg);
+    background-image:
+      radial-gradient(ellipse 75% 55% at 12% -8%, var(--canvas-accent-1), transparent 60%),
+      radial-gradient(ellipse 65% 50% at 88% 8%, var(--canvas-accent-2), transparent 60%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.liquid-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(165%);
+  -webkit-backdrop-filter: blur(24px) saturate(165%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    inset 0 1px 0 0 var(--glass-specular),
+    var(--glass-shadow);
+}
+
+.liquid-glass-elevated {
+  background: var(--glass-bg-elevated);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    inset 0 1px 0 0 var(--glass-specular),
+    var(--glass-shadow);
+}
+
+.liquid-glass-subtle {
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--glass-border);
+}
+
+.dark .liquid-glass-subtle {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+@keyframes reaction-float {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.75);
+  }
+  18% {
+    opacity: 1;
+    transform: translateY(0px) scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-96px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-136px) scale(0.88);
+  }
+}
+
+.animate-reaction-float {
+  animation: reaction-float 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-reaction-float {
+    animation-duration: 0.01ms;
+  }
+}
+
+/* Clean custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.32);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.52);
+}
